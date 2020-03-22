@@ -1,0 +1,54 @@
+<script type="text/javascript">
+  RED.nodes.registerType('transform', {
+    category: 'function',
+    color: '#a6bbcf',
+    defaults: {
+      name: { value: '' },
+      map: {value:"", validate: RED.validators.typedInput("mapType")},
+      mapType: {value:"json"},
+      //datatype: { value: 'current', validate: v => {
+      //  return [ 'xml', 'json'].indexOf(v) !== 1;
+      //} }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: 'transform.svg',
+    label: "Transform",
+    oneditprepare: function() {
+      $("#node-input-mapType").val(this.mapType);
+      $("#node-input-map").typedInput({
+          default: 'json',
+          typeField: $("#node-input-mapType"),
+          types:['json']
+      });
+
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="transform">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+
+
+  <div class="form-row">
+    <label for="node-input-map"><i class="fas fa-project-diagram"></i> Map</label>
+    <input type="text" id="node-input-map" style="width:70%">
+    <input type="hidden" id="node-input-mapType">
+  </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="transform">
+  <p>
+
+  </p>
+  <p>
+      The API provides :
+  </p>
+  <ul>
+      <li><strong>USD:</strong> US dollar</li>
+  </ul>
+</script>
